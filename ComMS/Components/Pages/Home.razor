@@ -1,0 +1,35 @@
+﻿@page "/home"
+@using ComMS.Services
+@using Microsoft.AspNetCore.Authorization
+@using System.Security.Claims
+
+@inject NavigationManager NavMan
+@inject SessionObjects SO;
+<PageTitle>Home</PageTitle>
+<div class="container" style="justify-content:center; align-items:center; display:flex">
+    <div style="padding:15px">
+        <img src="image/logosmall.png" />
+    </div>   
+</div>
+
+
+@code{
+    [CascadingParameter]
+    private Task<AuthenticationState>? auth { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await auth;
+        if (!authState.User.Identity.IsAuthenticated)
+        {
+            NavMan.NavigateTo("/");
+        }
+        else
+        {
+            if(SO.UserCode is not null)
+            {
+                SO.UserCode = authState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            }
+        }
+    }
+}

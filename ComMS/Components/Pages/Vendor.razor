@@ -1,0 +1,104 @@
+﻿@page "/addvendor"
+@using ComMS.Models;
+@using ComMS.Services;
+
+@rendermode InteractiveServer
+@inject ConstructionPortalDBContext db;
+@inject GroupService gs;
+@inject RankService RS;
+
+<h3><b>仕入先を追加</b></h3>
+<EditForm Model="@Vendorz" FormName="addvendorsForm" >
+    <div class="container">
+        <FluentSelect Style="width:40%"
+                      Height="300px" id="groupSelect" Label="Select Group"
+                      Items="@groups" OptionValue="@(c=>c.GPCD.ToString())"
+                      OptionText="@(c => c.GP名)"
+                      @bind-Value="@groupCode" />
+    </div>
+
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="仕入先名 (Supplier Name)" @bind-Value="@(Vendorz.仕入先名_SupplierName)" />
+    </div>
+
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="支社名 (Branch Name)" @bind-Value="@(Vendorz.支社名_BranchName)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="郵便番号 (Postal Code)" @bind-Value="@(Vendorz.郵便番号_PostalCode)" />
+    </div>
+    <div class="container">
+        <FluentNumberField Style="width:40%" Label="都道府県CD (Prefecture Code)" @bind-Value="@(Vendorz.都道府県CD_PrefectureCode)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="都道府県名 (Prefecture Name)" @bind-Value="@(Vendorz.都道府県名_PrefectureName)" />
+    </div>
+    <div class="container">
+        <FluentNumberField Style="width:40%" Label="市町村CD (Municipality Code)" @bind-Value="@(Vendorz.市町村CD_MunicipalityCode)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="市町村名 (Municipality Name)" @bind-Value="@(Vendorz.市町村名_MunicipalityName)" />
+    </div>
+
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="住所2 (Address2)" @bind-Value="@(Vendorz.住所2_Address2)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="電話番号1 (Telephone 1)" @bind-Value="@(Vendorz.電話番号1_Telephone1)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="電話番号2 (Telephone 2)" @bind-Value="@(Vendorz.電話番号2_Telephone2)" />
+    </div>
+    <div class="container">
+        <FluentDatePicker Style="width:40%" Label="締切日 (Closing Date)" @bind-Value="@(Vendorz.締切日_ClosingDate)" />
+    </div>
+    <div class="container">
+        <FluentSelect Style="width:40%"
+                      Height="300px" id="rankSelect" Label="Select Rank"
+                      Items="@Ranks" OptionValue="@(c=>c.ランクCD_RankCode.ToString())"
+                      OptionText="@(c => c.ランク名_RankName)"
+                      @bind-Value="@rank" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="eメール (Email)" @bind-Value="@(Vendorz.eメール_Email)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="HPアドレス (Homepage Address)" @bind-Value="@(Vendorz.HPアドレス_HomepageAddress)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="担当者 (Person In Charge)" @bind-Value="@(Vendorz.担当者_PersonInCharge)" />
+    </div>
+    <div class="container">
+        <FluentCheckbox Style="width:40%" Label="請求初期FLG (Initial Billing Flag)" Checked="@(Vendorz.請求初期FLG_InitialBillingFlag ?? false)" />
+    </div>
+    
+    <div class="container">
+        <FluentButton OnClick="@InsertData" Style="width:40%" Appearance="Appearance.Accent">Add</FluentButton>
+    </div>
+    
+</EditForm>
+@code {
+    private TM_仕入先マスタ_TM_VendorMaster Vendorz { get; set; } = new();
+    List<TM_グループ名マスタ_TM_GroupNameMaster> groups = new List<TM_グループ名マスタ_TM_GroupNameMaster>();
+    List<TM_ランクマスタ_TM_RankMaster> Ranks = new List<TM_ランクマスタ_TM_RankMaster>();
+    string groupCode="";
+    string rank = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        groups = gs.GetGroup();
+        Ranks = RS.GetAllRanks();
+    }
+
+    private async Task InsertData()
+    {
+        Vendorz.ランク_Rank = Ranks.FirstOrDefault(e=>e.ランクCD_RankCode == Convert.ToInt32(rank)).ランク名_RankName;
+        Vendorz.グループCD_GroupCode = Convert.ToInt32(groupCode);
+        Vendorz.登録日_RegistrationDate = DateTimeOffset.UtcNow;
+
+        db.TM_仕入先マスタ_TM_VendorMaster.Add(Vendorz);
+        await db.SaveChangesAsync();
+        Vendorz = new TM_仕入先マスタ_TM_VendorMaster();
+    }
+
+}

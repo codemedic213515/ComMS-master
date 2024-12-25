@@ -1,0 +1,105 @@
+﻿@page "/addcustomer"
+
+@using ComMS.Models;
+@using ComMS.Services;
+
+@rendermode InteractiveServer
+@inject ConstructionPortalDBContext db;
+@inject GroupService gs;
+@inject RankService RS;
+
+<h3><b>顧客を追加</b></h3>
+<EditForm Model="@customers" FormName="addcusForm" >
+    <div class="container">
+        <FluentSelect Style="width:40%"
+                      Height="300px" id="groupSelect" Label="Select Group"
+                      Items="@groups" OptionValue="@(c=>c.GPCD.ToString())"
+                      OptionText="@(c => c.GP名)"
+                      @bind-Value="@groupCode" />
+    </div>
+
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="仕入先名 (Customer Name)" @bind-Value="@(customers.得意先名_CustomerName)" />
+    </div>
+
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="支社名 (Branch Name)" @bind-Value="@(customers.支社名_BranchName)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="郵便番号 (Postal Code)" @bind-Value="@(customers.郵便番号_PostalCode)" />
+    </div>
+    <div class="container">
+        <FluentNumberField Style="width:40%" Label="都道府県CD (Prefecture Code)" @bind-Value="@(customers.都道府県CD_PrefectureCode)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="担当者 (Person In charge)" @bind-Value="@(customers.担当者_PersonInCharge)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="市町村CD (Municipality Code)" @bind-Value="@(customers.住所1_Address1)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="電話番号1 (Phone Number1)" @bind-Value="@(customers.電話番号1_PhoneNumber1)" />
+    </div>
+
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="住所1 (Address1)" @bind-Value="@(customers.住所1_Address1)" />
+    </div>
+    <div class="container">
+        <FluentNumberField Style="width:40%" Label="市町村CD (City Code)" @bind-Value="@(customers.市町村CD_CityCode)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="市町村名 (City Name)" @bind-Value="@(customers.市町村名_CityName)" />
+    </div>
+    <div class="container">
+        <FluentDatePicker Style="width:40%" Label="締切日 (Closing Date)" @bind-Value="@(customers.締切日_ClosingDate)" />
+    </div>
+    <div class="container">
+        <FluentSelect Style="width:40%"
+                      Height="300px" id="rankSelec" Label="Select Rank"
+                      Items="@Ranks" OptionValue="@(c=>c.ランクCD_RankCode.ToString())"
+                      OptionText="@(c => c.ランク名_RankName)"
+                      @bind-Value="@rank" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="eメール (Email)" @bind-Value="@(customers.eメール_Email)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="HPアドレス (Homepage Address)" @bind-Value="@(customers.HPアドレス_HomepageAddress)" />
+    </div>
+    <div class="container">
+        <FluentTextField Style="width:40%" Label="担当者 (Person In Charge)" @bind-Value="@(customers.担当者_PersonInCharge)" />
+    </div>
+    <div class="container">
+        <FluentCheckbox Style="width:40%" Label="請求初期FLG (Initial Billing Flag)" Checked="@(customers.請求初期FLG_InitialBillingFlag ?? false)" />
+    </div>
+    
+    <div class="container">
+        <FluentButton OnClick="@InsertData" Style="width:40%" Appearance="Appearance.Accent">Add</FluentButton>
+    </div>
+    
+</EditForm>
+
+@code {
+    private TM_得意先マスタ_CustomerMaster customers { get; set; } = new();
+    List<TM_グループ名マスタ_TM_GroupNameMaster> groups = new List<TM_グループ名マスタ_TM_GroupNameMaster>();
+    List<TM_ランクマスタ_TM_RankMaster> Ranks = new List<TM_ランクマスタ_TM_RankMaster>();
+    string groupCode="";
+    string rank = "";
+    DateTime V= DateTime.UtcNow;
+    protected override async Task OnInitializedAsync()
+    {
+        groups = gs.GetGroup();
+        Ranks = RS.GetAllRanks();
+    }
+
+    private async Task InsertData()
+    {
+        customers.ランク_Rank = Ranks.FirstOrDefault(e=>e.ランクCD_RankCode == Convert.ToInt32(rank)).ランク名_RankName;
+        customers.グループCD_GroupCode = Convert.ToInt32(groupCode);
+        customers.RegistrationDate = DateTimeOffset.UtcNow;
+
+        db.TM_得意先マスタ_CustomerMaster.Add(customers);
+        await db.SaveChangesAsync();
+        customers = new TM_得意先マスタ_CustomerMaster();
+    }
+}

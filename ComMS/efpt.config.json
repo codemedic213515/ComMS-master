@@ -1,0 +1,493 @@
+﻿{
+   "CodeGenerationMode": 3,
+   "ContextClassName": "ConstructionPortalDBContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "ComMS",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[Name AutoCorrect Save Failures]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[T_ErrorList]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[T_TablePath]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TC_ZIP]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TC_データテーブル一覧]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TC_ユーザ情報]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TC_見積情報]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TC_部署データ]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_基礎データ_BasicData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_工種データ_ConstructionTypeData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_比較GP名データ_ComparisonGroupNameData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_比較データ_ComparisonData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_比較基本データ_ComparisonBasicData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_積算表紙データ_EstimatedGeneralData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_積算集計データ_EstimatedAggregationData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_積算集計ヘッダ_EstimatedAggregationHeader]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_素材その他データMaterialAndAdditionalData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_素材乗率データMaterialLoadRatioData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_複合表紙データ_CompositCoverData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_複合集計データ_CompositAggregationData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_複合集計ヘッダ_CompositeAggregationHeader]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_部材データ_MaterialsData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_配線器具個数データ_WiringDeviceQuantityData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TI_配線器具単価データ_WiringDeviceUintPriceData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_MsgTable]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_PaperSize]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_グループ名マスタ_TM_GroupNameMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_ファンクション_TM_Functions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_メーカーマスタ_TM_MakerMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_ランクマスタ_TM_RankMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_仕入先マスタ_TM_VendorMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_付帯分類マスタ_AuxiliaryCategoryMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_付帯分類マスタ_TM_AncillaryClassificationMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_分類1マスタ_Category1Master]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_分類2マスタ_Category2Master]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_分類3マスタ_Category3Master]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_分類4マスタ_Category4Master]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_単位マスタ_TM_UnitMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_合成単価マスタ_TM_SyntheticUnitPriceMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_名称マスタ_TM_NameMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_変換単位マスタ_TMUnitConversionMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_変換塗装マスタ_TMPaintingConversionMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_変換塗装単価マスタ_TM_PaintingConversionUnitPriceMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_変換歩掛マスタ_TM_ConversionWorkRateMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_変換歩掛名称マスタ_TM_ConversionWorkRateNameMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_家電分類1マスタ_TM_HomeApplianceClassification1Master]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_家電分類2マスタ_TM_HomeApplianceClassification2Master]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_工事名マスタ_TM_Constructionnamemaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_工種マスタ_TM_ ConstructionTypeMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_市町村マスタ_TM_MunicipalityMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_役職マスタ_TM_JobMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_得意先マスタ_CustomerMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_支給区分マスタ_TM_PaymentClassificationMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_明細戻り_TM_ItemReturn]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_明細補助マスタ_TM_AuxiliaryItemMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_暦マスタ_TM_CalendarMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_歩掛補正マスタ_TM_WalkCorrectionMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_消費税_TM_ConsumptionTax]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_特殊分類1マスタ_TM_ SpecialClassification1Master]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_特殊分類2マスタ_TM_SpecialClassification2Master]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_特記事項マスタ_TM_SpecialNoteMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_素材マスタ_TM_MaterialMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_素材分類ヘッダ_TM_MaterialClassificationHeader]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_素材分類マスタ_TM_MaterialClassificationMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_経費ランクマスタ_TM_ExpenseRankMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_補助マスタ_TM_Auxiliary_SupportMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_資格マスタ_TM_QualificationMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_追加品目マスタ_TM_AdditionalMaterialMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_都道府県マスタ_PrefectureMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_都道府県マスタ_TM_ StateandProvinceMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_配線器具マスタ_TM_WiringFixtureMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_電工マスタ_TM_ElectricianMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TM_電線まとめマスタ_TM_WireSummaryMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_内訳明細データ_DetailedBreakdownData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_内訳複合データ_CompositeBreakdownData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_内訳集計データ_ItemizedSummaryData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_分類別複合データ_CategorywiseCompositeData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_分類別集計データ_TR_CategorywiseSummaryData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_工種明細データ_WorkTypeDetailData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_比較表データ_ComparisonTableData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_積算一覧データ_QuotationListData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_積算印刷データ_QuotationPrintData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_積算実行データ_QuotationExecutionData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_積算総括データ_QuotationSummaryData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_素材乗率データ_MaterialLoadingRateData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_複合単価データ_CompositeUnitPriceData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_複合印刷データ_CompositePrintData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TR_複合総括データ_CompositeSummaryData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_ファンクション_Function]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_合成単価データ_CombinedUnitPriceData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_同一CD異単価チェック_SameCDDifferentUnitPriceCheck]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_基礎データ_BasicData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_工種データ_ConstructionTypeData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_工種並替えワーク_WorkTypeReorderingWork]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_引用部材乗率データ_ReferencedMaterialLoadingRateData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_明細分析データ_DetailAnalysisData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_検索素材マスタ_SearchMaterialMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_比較データ_ComparisonData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_比較基本データ_ComparisonBasicData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_積算集計データ_EstimationSummaryData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_総合複合単価ワーク_OverallCompositeUnitPriceWork]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_製作所データ_ProducersData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_複合単価データ_CompositeUnitPriceData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_複合率設定データ_CompositeRateSettingData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_複合集計データ_CompositeAggregationData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_見積一覧ワーク_WorkQuotationSummary]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_計算式_CalculationFormula]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_追加並替えワーク_AdditionalReorderingWork]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_部材データ_MaterialsData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_部材並替えワーク1_MaterialReorderingWork1]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_部材並替えワーク2_MaterialReorderingWork2]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_部署データ_DepartmentData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TW_集計工種選択_AggregationWorkTypeSelection]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

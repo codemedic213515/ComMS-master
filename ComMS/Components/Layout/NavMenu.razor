@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@rendermode InteractiveServer
+
+<div class="navmenu">
+    <input type="checkbox" title="Menu expand/collapse toggle" id="navmenu-toggle" class="navmenu-icon" />
+    <label for="navmenu-toggle" class="navmenu-icon"><FluentIcon Value="@(new Icons.Regular.Size20.Navigation())" Color="Color.Fill" /></label>
+    <nav class="sitenav" aria-labelledby="main-menu" onclick="document.getElementById('navmenu-toggle').click();">
+        <AuthorizeView>
+            <Authorized>
+        <FluentNavMenu Id="main-menu" Collapsible="true" Width="250" Title="Navigation menu" @bind-Expanded="expanded">
+            <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Home())" IconColor="Color.Accent">Home</FluentNavLink>
+            <FluentNavGroup Title="作成命令" Icon="@(new Icons.Regular.Size20.NoteAdd())" IconColor="Color.Accent">
+                <FluentNavLink Href="basic" Icon="@(new Icons.Regular.Size20.Note())" IconColor="Color.Accent">新しい見積もり New Quote</FluentNavLink>
+                <FluentNavLink Href="quotationmaterials" Icon="@(new Icons.Regular.Size20.Toolbox())" IconColor="Color.Accent">材料を追加 Add Materials</FluentNavLink>
+            </FluentNavGroup>
+            <FluentNavLink Href="weather" Icon="@(new Icons.Regular.Size20.PeopleAdd())" IconColor="Color.Accent">明細 Particulars Revision</FluentNavLink>
+            <FluentNavLink Href="weather" Icon="@(new Icons.Regular.Size20.NumberSymbolSquare())" IconColor="Color.Accent">明細集計処理システム  Detail Aggregation process System</FluentNavLink>
+            <FluentNavLink Href="weather" Icon="@(new Icons.Regular.Size20.Calculator())" IconColor="Color.Accent">課題の見積もり Issue Estimate</FluentNavLink>
+
+            <FluentNavLink Href="weather" Icon="@(new Icons.Regular.Size20.SaveEdit())" IconColor="Color.Accent">保存されたデータ Saved Data</FluentNavLink>
+                    <FluentNavGroup Title="顧客を管理" Icon="@(new Icons.Regular.Size20.NoteAdd())" IconColor="Color.Accent">
+                        <FluentNavLink Href="addvendor" Icon="@(new Icons.Regular.Size20.PeopleAdd())" IconColor="Color.Accent"> 仕入先を追加 </FluentNavLink>
+                        <FluentNavLink Href="addcustomer" Icon="@(new Icons.Regular.Size20.PeopleAdd())" IconColor="Color.Accent"> 顧客を追加 </FluentNavLink>
+            </FluentNavGroup>
+        </FluentNavMenu>
+            </Authorized>
+            <NotAuthorized>
+
+            </NotAuthorized>
+        </AuthorizeView>
+    </nav>
+</div>
+
+@code {
+    private bool expanded = true;
+}
