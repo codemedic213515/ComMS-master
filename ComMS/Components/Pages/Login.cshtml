@@ -1,0 +1,43 @@
+﻿@page "/"
+
+@using ComMS.Components.Pages
+
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Components/Layout/_Layout.csHtml";
+}
+
+
+<div style="width:30%">
+<form method="post" asp-page-handler="Login">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-4">
+        <img src="image/logosmallest.png" alt="" />
+
+    </div>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="text" name="UserName" Style="width:100%" />
+
+    </div>
+
+    <!-- Password input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input name="Password" Style="width:100%" type="Password" />
+
+    </div>
+
+    <!-- 2 column grid layout for inline styling -->
+    <!-- Submit button -->
+
+    <button type="submit" Style="width:40%">ユーザー登録</button>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+        <p>Not a member? <a href="#!">Register</a></p>
+    </div>
+</form>
+</div>

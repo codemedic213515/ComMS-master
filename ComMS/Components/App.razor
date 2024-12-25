@@ -1,0 +1,40 @@
+﻿
+@inject AuthenticationStateProvider AuthenticationStateProvider
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="ComMS.styles.css" />
+    <link rel="icon" type="image/x-icon" href="EM1.ico" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+
+    <HeadOutlet />
+</head>
+
+<body>
+   
+    <CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(Layout.MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
+    
+    <script src="_framework/blazor.web.js"></script>
+
+    <script src="_content/Microsoft.FluentUI.AspNetCore.Components/Microsoft.FluentUI.AspNetCore.Components.lib.module.js" type="module" async></script>
+
+</body>
+
+</html>

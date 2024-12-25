@@ -1,0 +1,92 @@
+﻿@page "/register"
+
+@using ComMS.Components.Layout
+@using ComMS.DTOs
+@using ComMS.Models
+@using ComMS.Services
+@using Microsoft.AspNetCore.Identity
+@rendermode InteractiveServer
+@layout EmptyLayout
+
+@inject DepartmentService _ds
+@inject UserManager<ApplicationUser> userMan;
+@inject NavigationManager NavMan;
+
+
+<div style="width:30%">
+    <EditForm Model="@userinfo" FormName="registerUser">
+        <!-- Email input -->
+        <div class="mb-4">
+            <img src="image/logosmallest.png" alt="" />
+
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <FluentTextField @bind-Value="userinfo.Email" Style="width:100%" Label="メールアドレス  (Email Address)" />
+
+        </div>
+        <div>
+
+        </div>
+        <!-- Password input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <FluentTextField @bind-Value="userinfo.Password" Required Style="width:100%" Label="パスワード (Password)" Type="Password" />
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <FluentTextField @bind-Value="userinfo.ConfirmPassword"  Style="width:100%" Label="パスワード確認 (Confirm Password)" Type="Password" />
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <FluentSelect Style="width:100%"
+            Placeholder="Select Separtment" Required
+                          Height="300px" id="clientSelect" Label="部署を選択 (Select Department)"
+                          Items="@dpts" OptionValue="@(c=>c.部署CD_DepartmentCode.ToString())"
+                          OptionText="@(c => c.部署名_DepartmentName)"
+                          @bind-Value="@dptCode" />
+
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <FluentTextField @bind-Value="userinfo.Initials" Style="width:100%" Label="Full Name" />
+        </div>
+        
+
+        <!-- Submit button -->
+        <FluentButton OnClick="@InsertData" Style="width:40%" Appearance="Appearance.Accent">ユーザー登録</FluentButton>
+
+        <!-- Register buttons -->
+        <div class="text-center">
+            <p>Already a member? <a href="#!">Login</a></p>
+            
+            
+        </div>
+    </EditForm>
+</div>
+
+
+@code {
+    private RegisterDTO userinfo{ get; set; } = new();
+    List<TC_部署データ_TC_DepartmentData> dpts = new List<TC_部署データ_TC_DepartmentData>();
+    string dptCode= String.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        dpts = _ds.GetDepartments();
+    }
+
+    private async Task InsertData()
+    {
+        var user = new ApplicationUser { UserName = userinfo.Email, Email = userinfo.Email, NormalizedUserName = userinfo.Email };
+        var result = await userMan.CreateAsync(user, userinfo.Password);
+        if (result.Succeeded)
+        {
+            // Redirect to home or login page
+            NavMan.NavigateTo("/login");
+        }
+        else
+        {
+            foreach (var error in result.Errors)
+            {
+                // Handle registration errors
+                Console.WriteLine(error.Description);
+            }
+        }
+    }
+}

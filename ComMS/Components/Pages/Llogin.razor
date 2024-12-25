@@ -1,0 +1,65 @@
+﻿
+
+@using ComMS.Components.Layout
+@using ComMS.DTOs
+@using ComMS.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject NavigationManager NavMan
+@layout EmptyLayout
+
+
+<div style="width:30%">
+    <EditForm Model="@loginData"  FormName="loginForm" OnValidSubmit="Logdata" >
+        <!-- Email input -->
+        <div class="mb-4">
+            <img src="image/logosmallest.png" alt="" />
+
+        </div>
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div data-mdb-input-init class="form-outline mb-4">
+            <InputText @bind-Value="@s" Style="width:100%" />
+
+        </div>
+
+        <!-- Password input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <InputText @bind-Value="@loginData.Password" Style="width:100%" Type="Password" />
+
+        </div>
+
+        <!-- 2 column grid layout for inline styling -->
+       
+
+        <!-- Submit button -->
+        
+        <button type="submit" Style="width:40%">ユーザー登録</button>
+
+        <!-- Register buttons -->
+        <div class="text-center">
+            <p>Not a member? <a href="#!">Register</a></p>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    private LoginDTO loginData = new ();
+    string s = string.Empty;
+    private async Task Logdata()
+    {
+        Console.WriteLine($"Email: {loginData.UserName}");
+        Console.WriteLine($"Password: {loginData.Password}");
+        //NavMan.NavigateTo("/home");
+        SignInResult result = await SignInManager.PasswordSignInAsync(s, loginData.Password, false, false);
+        if (result.Succeeded)
+        {
+            NavMan.NavigateTo("/home");
+        }
+        else
+        {
+            // Handle login failure (e.g., show an error message)
+            NavMan.NavigateTo("/");
+        }
+    }
+}

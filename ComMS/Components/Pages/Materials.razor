@@ -1,0 +1,258 @@
+﻿@page "/quotationmaterials"
+@using ComMS.Components.Layout
+@using ComMS.DTOs
+@using ComMS.Models
+@using ComMS.Services
+@using Microsoft.AspNetCore.Authorization
+@rendermode InteractiveServer
+
+@inject IDialogService DialogService
+
+@inject ConstructionPortalDBContext _db;
+@inject WorkTypeService wt;
+@inject CatService cat;
+@inject UnitService unit;
+@inject SessionObjects SO;
+<PageTitle>Add Materials</PageTitle>
+
+
+@attribute [Authorize]
+<EditForm Model="@Material" FormName="Materialsdata" >
+    <div class="container">
+        <div Class="row">
+            <div class="col-md-4">
+                <div class="p-4">
+                    <FluentSelect Style="width:40%"
+                                  Height="300px" id="vendorSelect" Label="作業タイプを選択 (Select Work Type)"
+                                  Items="@wT" OptionValue="@(c=>c.工種CD_WorkTypeCode.ToString())"
+                                  OptionText="@(c => c.工種名_WorkTypeName)" />
+            </div>
+            
+            </div>
+            <div class="col-md-4">
+                <div class="p-4">
+                    <FluentTextField @bind-Value="@MaterialFulName" Style="width:100%" Label="マテリアル名 (Material Name)" Required></FluentTextField>
+                </div>
+            </div>
+        </div>
+        
+        <p></p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="p-3 border bg-light">
+                    <div class="form-label">材料カテゴリ (Select Material Category):</div>
+                        <FluentListbox Height="500px"
+                                       Items="@cats"
+                                       Id="cat1listbox"
+                                       ValueChanged="@(e=>FillCat2List(e))"
+                                       OptionValue="@(p => p.分類1_Category1.ToString())"
+                                       OptionText="@(p => p.分類名_CategoryName)"
+                                       />
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                
+                <div class="p-3 border bg-light">
+                    <div class="form-label">マテリアル名の選択 (Select Material Name):</div>
+                    <FluentListbox Height="500px"
+                                   Items="@cat2list"
+                                   Id="cat2listbox"
+                                   ValueChanged="@(e=>FillCat3List(e))"
+                                   OptionValue="@(p=>p.分類2_Category2.ToString())"
+                                   OptionText="@(p => p.分類名_CategoryName)" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 border bg-light">
+                    <div class="form-label">マテリアル サブクラスを選択:</div>
+                    <FluentListbox Height="500px"
+                                   ValueChanged="@(e=>GetCat3Value(e))"
+                                   Items="@cat3list"
+                                   Id="cat2listbox"
+                                   OptionValue="@(p=>p.分類3_Category3.ToString())"
+                                   OptionText="@(p => p.分類名_CategoryName)" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-3">
+                <div class="p-4">
+                    <FluentNumberField @bind-Value="@(Material.数量_Quantity)" Style="width:30" Label="量 (Quantity)" Required></FluentNumberField>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-4">
+                    <FluentSelect Style="width:20"
+                                  TOption="@TM_単位マスタ_TM_UnitMaster"
+                                  Height="300px" id="unitselect" Label="測定ユニット (Measuring Unit)"
+                                  Items="@units" OptionValue="@(c=>c.単位CD_UnitCode.ToString())"
+                                  OptionText="@(c => c.単位名_UnitName)"
+                                  @bind-SelectedOption="@selectedUnit"
+                                  />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-4">
+                    <FluentNumberField @bind-Value="@unitPrice" Style="width:30" Label="単価 (Unit Price)"></FluentNumberField>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-4">
+                    <FluentNumberField TValue="decimal" @bind-Value="@workRate" Style="width:30" Label="ワークレート (Work Rate)"></FluentNumberField>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div clss="container" >
+        <FluentButton OnClick="@AddDataToMaterial" Style="width:40%" Appearance="Appearance.Accent">見積書に資料を挿入</FluentButton>
+    </div>
+    <div class="container">
+        @if (mm.Count() < 1)
+        {
+            
+        }
+        else
+        {
+            <FluentDataGrid Id="materialgrid" Items="@materialList" TGridItem="TI_部材データ_MaterialsData">
+                <PropertyColumn Title="マテリアル名" Property="@(m=>m.部材名_MaterialName)" Sortable="true" />
+                <PropertyColumn Title="量" Property="@(m=>m.数量_Quantity)" Sortable="true" />
+                <PropertyColumn Title="測定ユニット" Property="@(m=>m.単位_Unit)" Sortable="true" />
+                <PropertyColumn Title="単価" Property="@(m=>m.提出単価_SubmittedUnitPrice)" Sortable="true" />
+                <PropertyColumn Title="ワークレート" Property="@(m=>m.歩掛A_LaborA)" Sortable="true" />
+            </FluentDataGrid>
+
+            <div clss="container">
+                <div>
+                    <FluentButton OnClick="@SaveQuotation" Style="width:30%">見積もりを保存</FluentButton>
+                </div>
+            </div>
+        }
+    </div>
+    
+
+</EditForm>
+
+
+@code {
+
+    private Dialog DialogRef { get; set; }
+
+    List<TM_工種マスタ_TM_ConstructionTypeMaster> wT = new List<TM_工種マスタ_TM_ConstructionTypeMaster>();
+    private TI_部材データ_MaterialsData Material { get; set; } = new();
+    IQueryable<TI_部材データ_MaterialsData> materialList { get; set; }
+    List<TI_部材データ_MaterialsData> MD;
+    public TM_素材マスタ_TM_MaterialMaster MaterialMaster { get; set; }
+    List<TI_部材データ_MaterialsData> mm = new List<TI_部材データ_MaterialsData>();
+    decimal unitPrice = 0.00M;
+    decimal workRate = 0.00M;
+    List<Category1SelectDTO> cats = new List<Category1SelectDTO>();
+    List<TM_分類2マスタ_Category2Master> cat2list = new List<TM_分類2マスタ_Category2Master>();
+    List<TM_分類3マスタ_Category3Master> cat3list = new List<TM_分類3マスタ_Category3Master>();
+    List<TM_単位マスタ_TM_UnitMaster> units = new List<TM_単位マスタ_TM_UnitMaster>();
+    TM_単位マスタ_TM_UnitMaster? selectedUnit;
+
+
+    string a = "";
+    string b = "";
+    string c = "";
+    string MaterialFulName = "";
+
+    public int cat1Id { get; set; } = 0;
+    public int cat2Id { get; set; } = 0;
+    public int cat3Id { get; set; } = 0;
+
+    private string? cat1value;
+    private string? cat1Text;
+    bool? canceled;
+    int counter = 1;
+
+    public async Task SaveQuotation()
+    {
+        // var dialog = await DialogService.ShowConfirmationAsync("Are you sure You want to add Materials to Quotation?", "Yes", "No");
+        // var result = await dialog.Result;
+        // canceled = result.Cancelled;
+
+        await _db.TI_部材データ_MaterialsData.AddRangeAsync(mm);
+        await _db.SaveChangesAsync();
+        mm = new List<TI_部材データ_MaterialsData>();
+    }
+
+    private void HandleDialogClose(bool confirmed)
+    {
+        if (confirmed)
+        {
+            Console.WriteLine("Dialog confirmed");
+        }
+        else
+        {
+            Console.WriteLine("Dialog canceled");
+        }
+    }
+    public async Task AddDataToMaterial()
+    {
+
+        Material.単位CD_UnitCode = selectedUnit.単位CD_UnitCode;
+        Material.分類1_Category1 = cat1Id;
+        Material.分類2_Category2 = cat2Id;
+        Material.分類3_Category3 = cat3Id;
+        Material.単位_Unit = selectedUnit.単位名_UnitName;
+        Material.提出単価_SubmittedUnitPrice = unitPrice;
+        Material.歩掛A_LaborA = workRate;
+        Material.部材名_MaterialName = MaterialFulName;
+        Material.見積番号_QuotationNumber = SO.QuotationId;
+        Material.日付追加_DateAdded = DateTimeOffset.UtcNow;
+        Material.作成者CD_CreatorCode = SO.UserCode;
+        mm.Add(Material);
+        materialList = mm.AsQueryable();
+        Material = new TI_部材データ_MaterialsData();
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        wT = wt.GetWorkType();
+        cats = cat.GetCategory1();  
+        units = unit.GetUnits();
+    }
+    public async void addcatForName(string aa="", string bb="", string cc="")
+    {
+        MaterialFulName = aa + " " + bb + " " + cc;
+    }
+    private async void FillCat2List(string e)
+    {
+        int id = Convert.ToInt32(e);
+        cat2list = cat.GetCat2(id);
+        cat1Id = id;
+        a = cats.Where(f=>f.分類1_Category1 == id).Select(n=>n.分類名_CategoryName).FirstOrDefault();
+        addcatForName(a); 
+    }
+
+    private async void FillCat3List(string e)
+    {
+        int id = Convert.ToInt32(e);
+        cat2Id = id;
+        cat3list = cat.GetCat3(cat1Id, id);
+        b = cat2list.Where(g => g.分類2_Category2 == id).Select(n => n.分類名_CategoryName).FirstOrDefault();
+        addcatForName(a, b);
+
+    }
+
+    private async void GetCat3Value(string e)
+    {
+        int id = Convert.ToInt32(e);
+        cat3Id = id;
+        MaterialMaster = cat.GetMat(cat1Id, cat2Id, id);
+        addcatForName(a, MaterialMaster.部材名_PartName);
+        unitPrice = MaterialMaster.提出単価_SubmissionUnitPrice;
+        workRate = MaterialMaster.歩掛A_WorkRateA;
+        
+    }
+}

@@ -1,0 +1,139 @@
+﻿@page "/basic"
+@using ComMS.DTOs
+@using ComMS.Models
+@using ComMS.Services
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+@inject ConstructionPortalDBContext db;
+@inject SelectClientSelectService client;
+@inject SelectSupplierService supplier;
+@inject ZipServices zip;
+@inject RankService rank;
+@inject WorkTypeService wt;
+@inject SessionObjects SO;
+@inject NavigationManager navMan;
+
+<PageTitle>Basic Quotation Info</PageTitle>
+
+<h1>Quotation Basic Information</h1>
+
+<EditForm Model="@BasicQuote" FormName="BasicQuotInfo" >
+    <div>
+
+        <div class="container">
+            <FluentTextField Style="width:40%" @bind-Value="BasicQuote.作成者CD_CreatorCode" Label="クリエイターコード (Creator Code)" />
+         </div>
+        
+        <div class="container">
+            <FluentSelect Style="width:40%"
+                          Height="300px" id="clientSelect" Label="クライアント選択 (Select Client)"
+                          Items="@clients" OptionValue="@(c=>c.得意先CD_CustomerCode.ToString())"
+                          OptionText="@(c => c.得意先名_CustomerName)"
+                          @bind-Value ="@clientId"
+                          />
+            <p></p>
+        </div>
+        <div class="container">
+        </div>
+        
+        <div class="container">
+            <FluentTextField Style="width:40%" @bind-Value="BasicQuote.工事名称1_ConstructionProjectName1" Label="プロジェクト名 (Project name)" />
+        </div>
+        <div class="container">
+            <FluentSelect Style="width:20%"
+                          Height="300px" id="zipSelect" Label="郵便番号で住所検索 (Zip)"
+                          Items="@zips" OptionValue="@(c=>c.ZIP.ToString())"
+                          ValueChanged="@(e => FillAddress(e))"
+                          OptionText="@(c => c.ZIP.ToString())"
+                          />
+            <p></p>
+        </div>
+        <div class="container">
+            <FluentTextField Style="width:40%" @bind-Value="@address" Label="送信先 (Submitting Destination)" />
+        </div>
+        <div class="container">
+            <div class="col-form-label">
+                <label>Total Floor (CM<sup>2</sup>)</label>
+            </div>
+            <FluentNumberField Style="width:20%" @bind-Value="BasicQuote.延床面積_TotalFloorArea"  />
+        </div>
+
+        <div class="container">
+            <FluentSelect Style="width:10%"
+                          Height="300px" id="vendorSelect" Label="ランクを選択 (Select Ranks)"
+                          Items="@ranks" OptionValue="@(c=>c.ランク名_RankName)"
+                          ValueChanged="@(e => FillVendors(e))"
+                          OptionText="@(c => c.ランク名_RankName)" />
+            <p></p>
+        </div>
+
+        <div class="container">
+            <FluentSelect Style="width:40%"
+                          Height="300px" id="vendorSelect" Label="仕入先を選択 (Select Vendor)"
+                          Items="@vendors" OptionValue="@(c=>c.仕入先CD_SupplierCode.ToString())"
+                          OptionText="@(c => c.仕入先名_SupplierName)" 
+                          @bind-Value="BasicQuote.仕入先_Vendor"/>
+            <p></p>
+        </div>
+
+        
+
+        <div class="container">
+            <FluentButton OnClick="@InsertData" Style="width:40%" Appearance="Appearance.Accent">次へ (Next)</FluentButton>
+            <p></p>
+        </div>
+
+    </div>
+    
+
+</EditForm>
+
+@code {
+    private TI_基礎データ_BasicData BasicQuote { get; set; } = new();
+    List<ClientSelectDTO> clients = new List<ClientSelectDTO>();
+    List<VendorSelectDTO> vendors = new List<VendorSelectDTO>();
+    List<TM_ランクマスタ_TM_RankMaster> ranks = new List<TM_ランクマスタ_TM_RankMaster>();
+    string clientId="";
+    List<TC_ZIP> zips = new List<TC_ZIP>();
+    public string address { get; set; } = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        clients = client.getClient();
+        zips = zip.GetZIPs();
+        ranks = rank.GetAllRanks();
+    }
+
+    private async void FillAddress(string e)
+    {
+        address = zip.GetAddressFromZip(e);
+    }
+
+    private void FillVendors(string e)
+    {
+        vendors = supplier.getVendor(e);
+        StateHasChanged();
+    }
+
+    private async Task InsertData()
+    {
+        var BQD = new TI_基礎データ_BasicData
+            {
+                作成者CD_CreatorCode = BasicQuote.作成者CD_CreatorCode,
+                発注者_Client = clients.Where(c=>c.得意先CD_CustomerCode.ToString().Equals(clientId)).Select(c=>c.得意先名_CustomerName).FirstOrDefault(),
+                仕入先_Vendor = BasicQuote.仕入先_Vendor,
+                発注者CD_ClientCode=Convert.ToInt32(clientId),
+                工事名称1_ConstructionProjectName1 = BasicQuote.工事名称1_ConstructionProjectName1, // This is not work type
+                提出先1_SubmissionAddress1=address,
+                作成日付_CreationDate = DateTime.UtcNow
+
+
+            };
+
+        db.TI_基礎データ_BasicData.Add(BQD);
+        await db.SaveChangesAsync();
+        SO.QuotationId = BQD.見積番号_QuotationNumber;
+        navMan.NavigateTo("/quotationmaterials");
+    }
+}
