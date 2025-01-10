@@ -1,0 +1,177 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\EM1.ico",
+      "PackagePath": "staticwebassets\\EM1.ico"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\image\\logolarge.png",
+      "PackagePath": "staticwebassets\\image\\logolarge.png"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\image\\logosmall.png",
+      "PackagePath": "staticwebassets\\image\\logosmall.png"
+    },
+    {
+      "Id": "D:\\@Github\\@Codemedic213515\\ComMS-master\\ComMS\\wwwroot\\image\\logosmallest.png",
+      "PackagePath": "staticwebassets\\image\\logosmallest.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ComMS.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ComMS.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ComMS.props",
+      "PackagePath": "build\\ComMS.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ComMS.props",
+      "PackagePath": "buildMultiTargeting\\ComMS.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ComMS.props",
+      "PackagePath": "buildTransitive\\ComMS.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
